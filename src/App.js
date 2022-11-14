@@ -1,33 +1,22 @@
-import data from "./data";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import HomeScreen from "./Screens/HomeScreen";
+import ProductScreen from "./Screens/ProductScreen";
 
 function App() {
   return (
-    <div>
+    <BrowserRouter>
+      <div>
       <header>
         <a href='/'>Ecommerce</a>
       </header>
       <main>
-        <h1>Products</h1>
-        <div className="products">
-        {
-          //codigo js: chamar data e acessar produtos com a função map que vai iterar cada obj - cada obj será um jsx
-          data.products.map( product => (
-            <div className="product" key={product.slug}>
-              <a href={`/products/${product.slug}`}>
-                <img src={product.image} alt={product.name}/>
-              </a>
-              
-              <div className="product-info">
-                <p>{product.name}</p>
-                <p>{product.price}</p>
-                <button>Add to cart</button>
-              </div>
-            </div>
-          ))
-        }
-        </div>
+        <Routes>
+        <Route path="/products/:slug" element={<ProductScreen/>}/>.
+          <Route path="/" element={<HomeScreen/>}/>.
+        </Routes>
       </main>
     </div>
+    </BrowserRouter>
   );
 }
 
